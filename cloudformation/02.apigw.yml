@@ -1,4 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  BucketName:
+    Type: String
+
 Resources:
   HttpApi:
     Type: 'AWS::ApiGatewayV2::Api'

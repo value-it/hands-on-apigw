@@ -1,9 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  BucketName:
+    Type: String
+
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: 'value-labo-test-contents-001'
+      BucketName: !Ref BucketName
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         IgnorePublicAcls: false
@@ -21,4 +26,4 @@ Resources:
             Principal: '*'
             Action:
               - 's3:GetObject'
-            Resource: 'arn:aws:s3:::value-labo-test-contents-001/*'
+            Resource: !Sub 'arn:aws:s3:::${S3Bucket}/*'
