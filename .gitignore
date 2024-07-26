@@ -1,0 +1,36 @@
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Intellij
+.idea
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# gradle
+.gradle
+build
+
+# vscode
+.vscode
+
+# redis
+/**/redis/data/*.rdb
+
+# dynamoDB
+/**/dynamodb/data/*.db
+
+# db2
+/**/db2/database/
+
+# nodejs
+node_modules.zip
+node_modules
+lambda_function.zip
+
+*.php
