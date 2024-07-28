@@ -10,15 +10,16 @@ aws sts get-caller-identity
 
 ## CloudFormationスタック作成
 ```shell
+# ユニークなS3バケット名を定義
 BucketName=hands-on-s3-$(date +%Y%m%d%H%M)
 
-# S3
+# S3バケット作成
 aws cloudformation deploy \
 --stack-name hands-on-s3 \
 --template-file ./01.s3.yml \
 --parameter-overrides BucketName=$BucketName
 
-# API Gateway
+# API Gateway作成
 aws cloudformation deploy \
 --stack-name hands-on-apigw \
 --template-file ./02.apigw.yml \
