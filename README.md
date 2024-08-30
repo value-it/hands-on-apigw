@@ -11,18 +11,24 @@ aws sts get-caller-identity
 ## CloudFormationスタック作成
 ```shell
 # ユニークなS3バケット名を定義
-BucketName=hands-on-s3-$(date +%Y%m%d%H%M)
+BucketName=hands-on-apigw-s3-$(date +%Y%m%d%H%M)
+echo "BucketName=$BucketName"
 
 # S3バケット作成
 aws cloudformation deploy \
---stack-name hands-on-s3 \
---template-file ./01.s3.yml \
+--stack-name hands-on-apigw-s3 \
+--template-file ./cloudformation/01.s3.yml \
 --parameter-overrides BucketName=$BucketName
 
 # API Gateway作成
 aws cloudformation deploy \
 --stack-name hands-on-apigw \
---template-file ./02.apigw.yml \
---capabilities CAPABILITY_NAMED_IAM \
+--template-file ./cloudformation/02.apigw.yml \
 --parameter-overrides BucketName=$BucketName
 ```
+
+## HTMLアップロード
+```shell
+aws s3 cp ./contents s3://$BucketName/ --recursive
+```
+
