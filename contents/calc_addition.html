@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+</head>
+<body>
+<h1>Simple Calculator</h1>
+<form id="calcForm">
+  <label for="num1">Number 1:</label>
+  <input type="number" id="num1" name="num1" required><br><br>
+
+  <label for="num2">Number 2:</label>
+  <input type="number" id="num2" name="num2" required><br><br>
+
+  <button type="submit">Add</button>
+</form>
+
+<h2>Result:</h2>
+<p id="result">--</p>
+
+<script>
+  document.getElementById('calcForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const num1 = document.getElementById('num1').value;
+    const num2 = document.getElementById('num2').value;
+
+    const apiUrl = '/calc/add';
+
+    try {
+      const response = await fetch(`${apiUrl}?num1=${num1}&num2=${num2}`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('result').textContent = data.message;
+      } else {
+        document.getElementById('result').textContent = 'Error: ' + data.message;
+      }
+    } catch (error) {
+      document.getElementById('result').textContent = 'Error: ' + error.message;
+    }
+  });
+</script>
+</body>
+</html>

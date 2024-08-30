@@ -31,6 +31,5 @@ build
 # nodejs
 node_modules.zip
 node_modules
-lambda_function.zip
 
-*.php
+lambda*.zip
