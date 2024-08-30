@@ -16,19 +16,19 @@ echo "BucketName=$BucketName"
 
 # S3バケット作成
 aws cloudformation deploy \
---stack-name hands-on-apigw-s3 \
+--stack-name hands-on-apigw-s3-rev2 \
 --template-file ./cloudformation/01.s3.yml \
 --parameter-overrides BucketName=$BucketName
 
 # Lambda関数雛形作成
 aws cloudformation deploy \
---stack-name hands-on-apigw-lambda \
+--stack-name hands-on-apigw-lambda-rev2 \
 --template-file ./cloudformation/02.lambda.function.yml \
 --capabilities CAPABILITY_NAMED_IAM
 
 # API Gateway作成
 aws cloudformation deploy \
---stack-name hands-on-apigw \
+--stack-name hands-on-apigw-rev2 \
 --template-file ./cloudformation/03.apigw.yml \
 --parameter-overrides BucketName=$BucketName
 ```
