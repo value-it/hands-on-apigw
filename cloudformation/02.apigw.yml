@@ -21,7 +21,7 @@ Resources:
     Properties:
       ApiId: !Ref HttpApi
       IntegrationType: 'HTTP_PROXY'
-      IntegrationUri: !Sub "https://${BucketName}.s3.amazonaws.com"
+      IntegrationUri: !Sub "https://${BucketName}.s3-${AWS::Region}.amazonaws.com"
       PayloadFormatVersion: '1.0'
       IntegrationMethod: 'ANY'
 
