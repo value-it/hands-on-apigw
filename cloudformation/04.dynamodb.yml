@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation Template for Calculation DynamoDB Table
+
+Resources:
+  CalculationTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: CalculationTable
+      AttributeDefinitions:
+        - AttributeName: ID
+          AttributeType: S  # S is for String, because the ID will be a UUID string
+      KeySchema:
+        - AttributeName: ID
+          KeyType: HASH  # ID is the partition key
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+Outputs:
+  CalculationTableName:
+    Description: "DynamoDB Table Name for Calculation"
+    Value: !Ref CalculationTable

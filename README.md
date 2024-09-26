@@ -16,21 +16,26 @@ echo "BucketName=$BucketName"
 
 # S3バケット作成
 aws cloudformation deploy \
---stack-name hands-on-apigw-s3-rev2 \
+--stack-name hands-on-apigw-s3-rev3 \
 --template-file ./cloudformation/01.s3.yml \
 --parameter-overrides BucketName=$BucketName
 
 # Lambda関数雛形作成
 aws cloudformation deploy \
---stack-name hands-on-apigw-lambda-rev2 \
+--stack-name hands-on-apigw-lambda-rev3 \
 --template-file ./cloudformation/02.lambda.function.yml \
 --capabilities CAPABILITY_NAMED_IAM
 
 # API Gateway作成
 aws cloudformation deploy \
---stack-name hands-on-apigw-rev2 \
+--stack-name hands-on-apigw-gw-rev3 \
 --template-file ./cloudformation/03.apigw.yml \
 --parameter-overrides BucketName=$BucketName
+
+# DynamoDB 計算結果格納用テーブル作成
+aws cloudformation deploy \
+--stack-name hands-on-apigw-dynamodb-rev3 \
+--template-file ./cloudformation/04.dynamodb.yml
 ```
 
 ## HTMLアップロード
